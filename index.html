@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)file:///C:/Users/dell/Downloads/index_3.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xiaoran Wang — Equity Research &amp; Quantitative Engineering</title>
+<style>
+:root{
+  --bg:#0e1620;--bg-soft:#141f2c;--panel:#172230;--line:#243343;
+  --txt:#e7edf3;--muted:#8b9bad;--dim:#5d6e80;
+  --accent:#46d5c8;--accent-2:#7aa2ff;
+  --mono:"SF Mono",ui-monospace,"JetBrains Mono","Roboto Mono",Consolas,monospace;
+  --serif:"Newsreader","Iowan Old Style",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,"Segoe UI","Inter",Roboto,"PingFang SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(14,22,32,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:var(--mono);font-size:14px;letter-spacing:.06em;color:var(--txt)}
+.brand b{color:var(--accent)}
+.navlinks{display:flex;gap:26px;font-size:13.5px;font-family:var(--mono);letter-spacing:.03em}
+.navlinks a{color:var(--muted);transition:color .2s}
+.navlinks a:hover{color:var(--accent)}
+@media(max-width:680px){.navlinks{display:none}}
+
+header{position:relative;padding:140px 0 90px;overflow:hidden}
+#pulse{position:absolute;inset:0;width:100%;height:100%;opacity:.5;z-index:0}
+.hero-inner{position:relative;z-index:2}
+.eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:22px}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(38px,6vw,68px);line-height:1.05;letter-spacing:-.01em;margin-bottom:24px}
+h1 .em{font-style:italic;color:var(--accent)}
+.lead{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:620px;margin-bottom:14px}
+.tagrow{font-family:var(--mono);font-size:13px;color:var(--dim);letter-spacing:.04em;margin-bottom:36px}
+.tagrow span{color:var(--accent-2)}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:13.5px;letter-spacing:.04em;padding:13px 22px;border-radius:6px;transition:all .2s;cursor:pointer;border:1px solid transparent}
+.btn-primary{background:var(--accent);color:#06231f;font-weight:600}
+.btn-primary:hover{background:#5fe6d9;transform:translateY(-1px)}
+.btn-ghost{border-color:var(--line);color:var(--txt)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+section{padding:84px 0;border-top:1px solid var(--line)}
+.sec-label{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.sec-label::before{content:"";width:26px;height:1px;background:var(--accent)}
+.sec-title{font-family:var(--serif);font-size:clamp(26px,4vw,38px);font-weight:500;margin-bottom:34px}
+
+.about-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:48px}
+@media(max-width:760px){.about-grid{grid-template-columns:1fr;gap:30px}}
+.about-grid p{color:var(--muted);margin-bottom:16px;font-size:16.5px}
+.about-grid p strong{color:var(--txt);font-weight:600}
+.facts{border:1px solid var(--line);border-radius:10px;padding:6px 22px;background:var(--panel);align-self:start}
+.fact{display:flex;justify-content:space-between;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);font-size:14px}
+.fact:last-child{border-bottom:0}
+.fact .k{color:var(--dim);font-family:var(--mono);font-size:12px;letter-spacing:.04em}
+.fact .v{color:var(--txt);text-align:right}
+
+.tl{position:relative;margin-left:8px}
+.tl::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:1px;background:var(--line)}
+.tl-item{position:relative;padding-left:34px;margin-bottom:40px}
+.tl-item:last-child{margin-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-4px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(70,213,200,.12)}
+.tl-item.past::before{background:var(--dim);box-shadow:0 0 0 4px rgba(93,110,128,.1)}
+.tl-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline}
+.tl-org{font-size:18px;font-weight:600}
+.tl-date{font-family:var(--mono);font-size:12.5px;color:var(--dim);letter-spacing:.03em;white-space:nowrap}
+.tl-role{font-size:13.5px;color:var(--accent-2);font-family:var(--mono);margin:3px 0 12px;letter-spacing:.02em}
+.tl-item ul{list-style:none}
+.tl-item li{position:relative;padding-left:18px;color:var(--muted);font-size:15px;margin-bottom:8px}
+.tl-item li::before{content:"–";position:absolute;left:0;color:var(--accent)}
+
+.proj{border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden;margin-bottom:30px}
+.proj-head{padding:26px 28px 0}
+.proj-flag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border:1px solid var(--line);border-radius:20px;padding:4px 12px;margin-bottom:14px}
+.proj h3{font-family:var(--serif);font-size:24px;font-weight:500;margin-bottom:10px}
+.proj-desc{color:var(--muted);font-size:15.5px;padding:0 28px 20px}
+.proj-desc p{margin-bottom:12px}
+.proj-desc em{color:var(--txt);font-style:italic}
+.tags{display:flex;flex-wrap:wrap;gap:8px;padding:0 28px 22px}
+.tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;color:var(--accent-2);background:rgba(122,162,255,.08);border:1px solid rgba(122,162,255,.18);border-radius:5px;padding:4px 9px}
+
+.arch{margin:0 28px 26px;border:1px dashed var(--line);border-radius:10px;background:var(--bg-soft);padding:26px 20px}
+.arch-cap{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;text-align:center;margin-bottom:20px}
+.flow{display:flex;align-items:stretch;justify-content:center;gap:0;flex-wrap:wrap}
+.node{flex:1;min-width:120px;text-align:center;padding:16px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel);position:relative;margin:6px}
+.node .n-ttl{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:4px}
+.node .n-sub{font-family:var(--mono);font-size:10.5px;color:var(--dim);line-height:1.4}
+.arrow{display:flex;align-items:center;color:var(--accent);font-size:18px;padding:0 2px}
+@media(max-width:700px){.arrow{transform:rotate(90deg)}.flow{flex-direction:column}.node{min-width:0}}
+.ph-note{text-align:center;font-size:12.5px;color:var(--dim);font-style:italic;margin-top:18px}
+.proj-links{display:flex;gap:18px;padding:0 28px 26px;font-family:var(--mono);font-size:13px}
+.proj-links a{color:var(--accent);border-bottom:1px solid transparent;transition:border-color .2s}
+.proj-links a:hover{border-color:var(--accent)}
+.proj-links a.disabled{color:var(--dim);pointer-events:none}
+
+.skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+@media(max-width:680px){.skill-grid{grid-template-columns:1fr}}
+.skill-card{border:1px solid var(--line);border-radius:10px;padding:22px 24px;background:var(--panel)}
+.skill-card h4{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.skill-card .items{display:flex;flex-wrap:wrap;gap:8px}
+.skill-card .items span{font-size:13.5px;color:var(--muted);background:var(--bg-soft);border:1px solid var(--line);border-radius:5px;padding:5px 11px}
+
+#contact{text-align:center;border-bottom:1px solid var(--line)}
+#contact .sec-label{justify-content:center}
+#contact .sec-label::before{display:none}
+.contact-line{font-family:var(--serif);font-size:clamp(24px,4vw,34px);margin-bottom:28px}
+.contact-line a{color:var(--accent);border-bottom:1px solid var(--line);transition:border-color .2s}
+.contact-line a:hover{border-color:var(--accent)}
+.contact-links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;font-family:var(--mono);font-size:13.5px}
+.contact-links a{color:var(--muted);transition:color .2s}
+.contact-links a:hover{color:var(--accent)}
+footer{padding:30px 0;text-align:center;font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.04em}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ============================================================= -->
+<!--  EDIT YOUR CONTENT HERE — this is the only block you change.  -->
+<!--  Everything renders automatically from this object. To update -->
+<!--  text, add a project, or change a link, edit only DATA below. -->
+<!-- ============================================================= -->
+<script>
+const DATA = {
+  // ---- identity ----
+  name: "Xiaoran Wang",
+  email: "luminawon@outlook.com",
+  cvFile: "Xiaoran_Wang_CV.pdf",       // e.g. "Xiaoran_Wang_CV.pdf" — drop the PDF beside this file, then the button downloads it
+  linkedin: "",     // full URL, or "" to hide
+  github: "",       // full URL, or "" to hide
+
+  // ---- hero ----
+  eyebrow: "Equity Research · Quantitative Engineering",
+  headline: "Reading the market as an analyst, building it as an <em>engineer</em>.", // <em>..</em> = accent
+  lead: "Financial Management student turning fundamental research into models, and models into working systems.",
+  heroTags: ["SUFE", "CUHK Exchange"],
+
+  // ---- about ----
+  aboutTitle: "Two skill sets, one workflow",
+  about: [
+    "I'm a Financial Management student at the Shanghai University of Finance and Economics (SUFE), with an exchange semester at CUHK. My equity research runs along two tracks.",
+    "In professional roles I've covered <strong>innovative pharmaceuticals</strong> and the <strong>building-materials</strong> sector — from fundamental analysis and pipeline evaluation to valuation modeling and in-depth reports adopted for institutional roadshows. Independently, I research the <strong>semiconductor</strong> and <strong>AI</strong> industries, mapping value chains, competitive structure, and second-growth-curve potential.",
+    "What ties the two together is the engineering side. I taught myself to build the tools I wanted analysts to have — most recently a <strong>full-stack equity research platform</strong> that pulls live market data, computes technical indicators, and generates simulated portfolio recommendations end to end."
+  ],
+  facts: [
+    ["EDUCATION", "SUFE · Financial Management"],
+    ["GPA", "3.61 / 4.0 · Top 20%"],
+    ["EXCHANGE", "CUHK · 2025"],
+    ["COVERED", "Pharma · Building Materials"],
+    ["RESEARCHING", "Semiconductors · AI"],
+    ["STACK", "Python · FastAPI · React"]
+  ],
+
+  // ---- experience (most recent first) ----
+  experience: [
+    {
+      org: "China International Capital Corporation (CICC)",
+      date: "Dec 2025 — Jun 2026",   // <-- set the real end month
+      role: "Research Intern · Shanghai",
+      past: true,
+      points: [
+        "Independently authored 2 in-depth single-stock research reports, covering the full workflow from industry structure to valuation and investment recommendations.",
+        "Produced 10+ research notes — earnings reviews and industry commentaries — built on a self-constructed cycle-tracking framework using high-frequency macro and industry data.",
+        "Built 3-statement models and estimated investment income across 28 semiconductor projects via shareholding penetration and 3-scenario PB valuation."
+      ]
+    },
+    {
+      org: "Huayuan Securities",
+      date: "Jun 2025 — Jan 2026",
+      role: "Research Assistant · Pharmaceutical Team (Remote)",
+      past: true,
+      points: [
+        "Authored core chapters of a 60-page in-depth report on the small-nucleic-acid (innovative drug) sector, adopted for institutional roadshows.",
+        "Performed data mining and cross-validation for 30+ innovative drugs using professional databases, building quantitative valuation models for the team's thesis."
+      ]
+    },
+    {
+      org: "KPMG Huazhen LLP",
+      date: "Jan 2025 — Feb 2025",
+      role: "Audit Intern · Shanghai",
+      past: true,
+      points: [
+        "Completed audit working papers for 10+ accounts across 3 project teams, performing asset revaluation and depreciation calculations with variance analysis.",
+        "Prepared lease-liability working papers for 12 contracts and coordinated with clients to resolve material discrepancies."
+      ]
+    }
+  ],
+
+  // ---- projects ----
+  projects: [
+    {
+      flag: "Independent · Full-stack",
+      title: "Virtual Stock Portfolio Analysis Platform",
+      desc: [
+        "An end-to-end equity research platform that screens news- and policy-driven sectors, analyzes individual stocks across fundamentals and technicals, and generates risk-adjusted, <em>simulated</em> portfolio recommendations — then monitors holdings and flags position-adjustment signals.",
+        "I designed and built it from scratch: a Python / FastAPI backend serving live A-share market data through AKShare, technical indicators (MA, MACD, RSI) computed in pandas, LLM APIs wired in for automated sector and stock analysis, portfolios persisted in SQLite, and a React + ECharts front end for interactive dashboards."
+      ],
+      tags: ["Python","FastAPI","pandas","AKShare","MA / MACD / RSI","LLM API","SQLite","React","ECharts"],
+      flow: [   // set to null to hide the diagram
+        ["Sector Screening","market data + news<br>→ hot sectors"],
+        ["Stock Analysis","fundamentals +<br>MA / MACD / RSI"],
+        ["Portfolio Build","capital + risk<br>→ allocation"],
+        ["Monitoring","hold / reduce<br>signals"]
+      ],
+      flowNote: "Live screenshots and demo coming soon.",
+      links: [
+        {label:"GitHub — coming soon", url:""},   // add url to activate
+        {label:"Live demo — coming soon", url:""}
+      ]
+    },
+    {
+      flag: "Competition · Core member",
+      title: "National Statistical Modeling Competition (11th)",
+      desc: [
+        "Led the design of the project's analytical framework — integrating macro industry trends, micro-level business analysis, and competitiveness evaluation — and defined the research pathways and task allocation for the team.",
+        "Sole author of the final 10,000-word research paper, converting the team's research into a rigorous, data-driven deliverable. Awarded Second Prize at the municipal level."
+      ],
+      tags: ["Statistical Modeling","Research Design","Data Analysis"],
+      flow: null,
+      links: []
+    }
+  ],
+
+  // ---- skills ----
+  skills: [
+    ["Programming & Backend", ["Python","pandas","FastAPI","SQL","SQLite"]],
+    ["Data & Quant Analysis", ["AKShare","MA / MACD / RSI","LLM API integration","Financial modeling"]],
+    ["Visualization & Tools", ["React","ECharts","Tableau","Excel (Advanced)","Alteryx","Think-cell"]],
+    ["Finance & Languages", ["3-statement modeling","Segment / PB valuation","English (IELTS 6.5)","Mandarin (Native)"]]
+  ]
+};
+</script>
+<!-- ============================================================= -->
+<!--  END OF EDITABLE CONTENT — layout & styling live below.       -->
+<!-- ============================================================= -->
+
+<nav><div class="wrap">
+  <div class="brand" id="brand">XIAORAN&nbsp;<b>WANG</b></div>
+  <div class="navlinks">
+    <a href="file:///C:/Users/dell/Downloads/index_3.html#about">About</a><a href="file:///C:/Users/dell/Downloads/index_3.html#experience">Experience</a>
+    <a href="file:///C:/Users/dell/Downloads/index_3.html#projects">Projects</a><a href="file:///C:/Users/dell/Downloads/index_3.html#skills">Skills</a><a href="file:///C:/Users/dell/Downloads/index_3.html#contact">Contact</a>
+  </div>
+</div></nav>
+
+<header>
+  <canvas id="pulse" width="370" height="1020"></canvas>
+  <div class="wrap hero-inner">
+    <div class="eyebrow" id="eyebrow">Equity Research · Quantitative Engineering</div>
+    <h1 id="headline">Reading the market as an analyst, building it as an <em>engineer</em>.</h1>
+    <p class="lead" id="lead">Financial Management student turning fundamental research into models, and models into working systems.</p>
+    <p class="tagrow" id="heroTags">SUFE <span>·</span> CUHK Exchange</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="file:///C:/Users/dell/Downloads/index_3.html#projects">View projects</a>
+      <a class="btn btn-ghost" href="file:///C:/Users/dell/Downloads/index_3.html#" id="cvBtn">Download CV</a>
+    </div>
+  </div>
+</header>
+
+<section id="about"><div class="wrap reveal in">
+  <div class="sec-label">About</div>
+  <h2 class="sec-title" id="aboutTitle">Two skill sets, one workflow</h2>
+  <div class="about-grid">
+    <div id="aboutBody"><p>I'm a Financial Management student at the Shanghai University of Finance and Economics (SUFE), with an exchange semester at CUHK. My equity research runs along two tracks.</p><p>In professional roles I've covered <strong>innovative pharmaceuticals</strong> and the <strong>building-materials</strong> sector — from fundamental analysis and pipeline evaluation to valuation modeling and in-depth reports adopted for institutional roadshows. Independently, I research the <strong>semiconductor</strong> and <strong>AI</strong> industries, mapping value chains, competitive structure, and second-growth-curve potential.</p><p>What ties the two together is the engineering side. I taught myself to build the tools I wanted analysts to have — most recently a <strong>full-stack equity research platform</strong> that pulls live market data, computes technical indicators, and generates simulated portfolio recommendations end to end.</p></div>
+    <div class="facts" id="facts"><div class="fact"><span class="k">EDUCATION</span><span class="v">SUFE · Financial Management</span></div><div class="fact"><span class="k">GPA</span><span class="v">3.61 / 4.0 · Top 20%</span></div><div class="fact"><span class="k">EXCHANGE</span><span class="v">CUHK · 2025</span></div><div class="fact"><span class="k">COVERED</span><span class="v">Pharma · Building Materials</span></div><div class="fact"><span class="k">RESEARCHING</span><span class="v">Semiconductors · AI</span></div><div class="fact"><span class="k">STACK</span><span class="v">Python · FastAPI · React</span></div></div>
+  </div>
+</div></section>
+
+<section id="experience"><div class="wrap reveal in">
+  <div class="sec-label">Experience</div>
+  <h2 class="sec-title">Research, hands-on</h2>
+  <div class="tl" id="tl">
+    <div class="tl-item past">
+      <div class="tl-top"><div class="tl-org">China International Capital Corporation (CICC)</div><div class="tl-date">Dec 2025 — Apr 2026</div></div>
+      <div class="tl-role">Research Intern · Shanghai</div>
+      <ul><li>Independently authored 2 in-depth single-stock research reports, covering the full workflow from industry structure to valuation and investment recommendations.</li><li>Produced 10+ research notes — earnings reviews and industry commentaries — built on a self-constructed cycle-tracking framework using high-frequency macro and industry data.</li><li>Built 3-statement models and estimated investment income across 28 semiconductor projects via shareholding penetration and 3-scenario PB valuation.</li></ul>
+    </div>
+    <div class="tl-item past">
+      <div class="tl-top"><div class="tl-org">Huayuan Securities</div><div class="tl-date">Jun 2025 — Jan 2026</div></div>
+      <div class="tl-role">Research Assistant · Pharmaceutical Team (Remote)</div>
+      <ul><li>Authored core chapters of a 60-page in-depth report on the small-nucleic-acid (innovative drug) sector, adopted for institutional roadshows.</li><li>Performed data mining and cross-validation for 30+ innovative drugs using professional databases, building quantitative valuation models for the team's thesis.</li></ul>
+    </div>
+    <div class="tl-item past">
+      <div class="tl-top"><div class="tl-org">KPMG Huazhen LLP</div><div class="tl-date">Jan 2025 — Feb 2025</div></div>
+      <div class="tl-role">Audit Intern · Shanghai</div>
+      <ul><li>Completed audit working papers for 10+ accounts across 3 project teams, performing asset revaluation and depreciation calculations with variance analysis.</li><li>Prepared lease-liability working papers for 12 contracts and coordinated with clients to resolve material discrepancies.</li></ul>
+    </div></div>
+</div></section>
+
+<section id="projects"><div class="wrap reveal">
+  <div class="sec-label">Projects</div>
+  <h2 class="sec-title">Things I built</h2>
+  <div id="projWrap"><div class="proj">
+      <div class="proj-head"><span class="proj-flag">Independent · Full-stack</span><h3>Virtual Stock Portfolio Analysis Platform</h3></div>
+      <div class="proj-desc"><p>An end-to-end equity research platform that screens news- and policy-driven sectors, analyzes individual stocks across fundamentals and technicals, and generates risk-adjusted, <em>simulated</em> portfolio recommendations — then monitors holdings and flags position-adjustment signals.</p><p>I designed and built it from scratch: a Python / FastAPI backend serving live A-share market data through AKShare, technical indicators (MA, MACD, RSI) computed in pandas, LLM APIs wired in for automated sector and stock analysis, portfolios persisted in SQLite, and a React + ECharts front end for interactive dashboards.</p></div>
+      <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">pandas</span><span class="tag">AKShare</span><span class="tag">MA / MACD / RSI</span><span class="tag">LLM API</span><span class="tag">SQLite</span><span class="tag">React</span><span class="tag">ECharts</span></div>
+      
+      <div class="arch"><div class="arch-cap">System Flow</div>
+        <div class="flow">
+          <div class="node"><div class="n-ttl">Sector Screening</div><div class="n-sub">market data + news<br>→ hot sectors</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="n-ttl">Stock Analysis</div><div class="n-sub">fundamentals +<br>MA / MACD / RSI</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="n-ttl">Portfolio Build</div><div class="n-sub">capital + risk<br>→ allocation</div></div>
+          <div class="arrow">→</div>
+          <div class="node"><div class="n-ttl">Monitoring</div><div class="n-sub">hold / reduce<br>signals</div></div>
+          </div>
+        <div class="ph-note">Live screenshots and demo coming soon.</div>
+      </div>
+      <div class="proj-links"><a href="file:///C:/Users/dell/Downloads/index_3.html#" class="disabled">GitHub — coming soon</a><a href="file:///C:/Users/dell/Downloads/index_3.html#" class="disabled">Live demo — coming soon</a></div></div><div class="proj">
+      <div class="proj-head"><span class="proj-flag">Competition · Core member</span><h3>National Statistical Modeling Competition (11th)</h3></div>
+      <div class="proj-desc"><p>Led the design of the project's analytical framework — integrating macro industry trends, micro-level business analysis, and competitiveness evaluation — and defined the research pathways and task allocation for the team.</p><p>Sole author of the final 10,000-word research paper, converting the team's research into a rigorous, data-driven deliverable. Awarded Second Prize at the municipal level.</p></div>
+      <div class="tags"><span class="tag">Statistical Modeling</span><span class="tag">Research Design</span><span class="tag">Data Analysis</span></div>
+      </div></div>
+</div></section>
+
+<section id="skills"><div class="wrap reveal">
+  <div class="sec-label">Skills</div>
+  <h2 class="sec-title">Toolkit</h2>
+  <div class="skill-grid" id="skillGrid">
+    <div class="skill-card"><h4>Programming &amp; Backend</h4>
+      <div class="items"><span>Python</span><span>pandas</span><span>FastAPI</span><span>SQL</span><span>SQLite</span></div></div>
+    <div class="skill-card"><h4>Data &amp; Quant Analysis</h4>
+      <div class="items"><span>AKShare</span><span>MA / MACD / RSI</span><span>LLM API integration</span><span>Financial modeling</span></div></div>
+    <div class="skill-card"><h4>Visualization &amp; Tools</h4>
+      <div class="items"><span>React</span><span>ECharts</span><span>Tableau</span><span>Excel (Advanced)</span><span>Alteryx</span><span>Think-cell</span></div></div>
+    <div class="skill-card"><h4>Finance &amp; Languages</h4>
+      <div class="items"><span>3-statement modeling</span><span>Segment / PB valuation</span><span>English (IELTS 6.5)</span><span>Mandarin (Native)</span></div></div></div>
+</div></section>
+
+<section id="contact"><div class="wrap reveal">
+  <div class="sec-label">Contact</div>
+  <p class="contact-line">Let's talk — <a id="emailLine" href="mailto:luminawon@outlook.com">luminawon@outlook.com</a></p>
+  <div class="contact-links" id="contactLinks"><a href="mailto:luminawon@outlook.com">Email</a><a href="file:///C:/Users/dell/Downloads/index_3.html#" id="cvBtn2">Download CV</a></div>
+</div></section>
+
+<footer id="footer">© 2026 Xiaoran Wang · Built and designed independently</footer>
+
+<script>
+const D=DATA, $=id=>document.getElementById(id);
+(function render(){
+  const parts=D.name.trim().split(" ");
+  $('brand').innerHTML=parts.slice(0,-1).join(" ").toUpperCase()+"&nbsp;<b>"+parts.slice(-1)[0].toUpperCase()+"</b>";
+  $('eyebrow').textContent=D.eyebrow;
+  $('headline').innerHTML=D.headline;
+  $('lead').textContent=D.lead;
+  $('heroTags').innerHTML=D.heroTags.join(' <span>·</span> ');
+  $('aboutTitle').textContent=D.aboutTitle;
+  $('aboutBody').innerHTML=D.about.map(p=>`<p>${p}</p>`).join('');
+  $('facts').innerHTML=D.facts.map(([k,v])=>`<div class="fact"><span class="k">${k}</span><span class="v">${v}</span></div>`).join('');
+
+  $('tl').innerHTML=D.experience.map(e=>`
+    <div class="tl-item ${e.past?'past':''}">
+      <div class="tl-top"><div class="tl-org">${e.org}</div><div class="tl-date">${e.date}</div></div>
+      <div class="tl-role">${e.role}</div>
+      <ul>${e.points.map(p=>`<li>${p}</li>`).join('')}</ul>
+    </div>`).join('');
+
+  $('projWrap').innerHTML=D.projects.map(p=>{
+    const flow=p.flow?`
+      <div class="arch"><div class="arch-cap">System Flow</div>
+        <div class="flow">${p.flow.map((n,i)=>`
+          <div class="node"><div class="n-ttl">${n[0]}</div><div class="n-sub">${n[1]}</div></div>
+          ${i<p.flow.length-1?'<div class="arrow">→</div>':''}`).join('')}</div>
+        ${p.flowNote?`<div class="ph-note">${p.flowNote}</div>`:''}
+      </div>`:'';
+    const links=(p.links&&p.links.length)?`
+      <div class="proj-links">${p.links.map(l=>l.url
+        ?`<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`
+        :`<a href="#" class="disabled">${l.label}</a>`).join('')}</div>`:'';
+    return `<div class="proj">
+      <div class="proj-head"><span class="proj-flag">${p.flag}</span><h3>${p.title}</h3></div>
+      <div class="proj-desc">${p.desc.map(d=>`<p>${d}</p>`).join('')}</div>
+      <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      ${flow}${links}</div>`;
+  }).join('');
+
+  $('skillGrid').innerHTML=D.skills.map(([h,items])=>`
+    <div class="skill-card"><h4>${h}</h4>
+      <div class="items">${items.map(i=>`<span>${i}</span>`).join('')}</div></div>`).join('');
+
+  const mail="mailto:"+D.email;
+  $('emailLine').href=mail; $('emailLine').textContent=D.email;
+  let cl=[`<a href="${mail}">Email</a>`,`<a href="#" id="cvBtn2">Download CV</a>`];
+  if(D.linkedin) cl.push(`<a href="${D.linkedin}" target="_blank" rel="noopener">LinkedIn</a>`);
+  if(D.github)   cl.push(`<a href="${D.github}" target="_blank" rel="noopener">GitHub</a>`);
+  $('contactLinks').innerHTML=cl.join('');
+  $('footer').textContent="© "+new Date().getFullYear()+" "+D.name+" · Built and designed independently";
+
+  function cvHandler(e){
+    if(D.cvFile)return;
+    e.preventDefault();
+    alert('To enable the CV download:\n\n1. Export your résumé as a PDF.\n2. Put it in the same folder as this file.\n3. Set  cvFile: "YourFile.pdf"  in the DATA block at the top.');
+  }
+  ['cvBtn','cvBtn2'].forEach(id=>{const b=$(id);if(!b)return;
+    if(D.cvFile){b.setAttribute('href',D.cvFile);b.setAttribute('download','');}
+    else b.addEventListener('click',cvHandler);});
+})();
+
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+(function(){
+  const c=$('pulse');if(!c)return;
+  const reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const ctx=c.getContext('2d');let w,h,t=0;
+  function size(){w=c.width=c.offsetWidth*devicePixelRatio;h=c.height=c.offsetHeight*devicePixelRatio;}
+  size();window.addEventListener('resize',size);
+  const lines=[{seed:0.0,amp:0.20,speed:0.6,color:'70,213,200',alpha:0.55},
+               {seed:1.7,amp:0.13,speed:0.9,color:'122,162,255',alpha:0.40},
+               {seed:3.4,amp:0.08,speed:1.3,color:'70,213,200',alpha:0.22}];
+  function noise(x,s){return Math.sin(x*1.7+s)*0.6+Math.sin(x*0.6+s*2.1)*0.4+Math.sin(x*3.1+s*0.7)*0.18;}
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    lines.forEach(L=>{ctx.beginPath();const mid=h*0.62,step=Math.max(6,w/220);
+      for(let x=0;x<=w;x+=step){const px=x/w*8,y=mid+noise(px+t*L.speed,L.seed)*h*L.amp;x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}
+      ctx.strokeStyle='rgba('+L.color+','+L.alpha+')';ctx.lineWidth=1.4*devicePixelRatio;ctx.stroke();});
+    if(!reduce){t+=0.006;requestAnimationFrame(draw);}
+  }
+  draw();
+})();
+</script>
+
+
+</body></html>
