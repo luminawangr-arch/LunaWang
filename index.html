@@ -118,26 +118,22 @@ footer{padding:30px 0;text-align:center;font-family:var(--mono);font-size:12px;c
 
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
-/* ---- project screenshots gallery ---- */
+/* ---- project screenshots carousel ---- */
 .shots{margin:0 28px 26px}
-.shots-cap{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;text-align:center;margin-bottom:18px}
-.shots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-@media(max-width:680px){.shots-grid{grid-template-columns:repeat(2,1fr)}}
-.shot{position:relative;border:1px solid var(--line);border-radius:8px;overflow:hidden;cursor:pointer;background:var(--bg-soft);aspect-ratio:16/10}
-.shot img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .35s ease,opacity .35s ease;opacity:.9}
-.shot:hover img{transform:scale(1.04);opacity:1}
-.shot .cap{position:absolute;left:0;right:0;bottom:0;padding:18px 10px 8px;font-size:11.5px;line-height:1.35;color:var(--txt);background:linear-gradient(to top,rgba(10,16,24,.92),transparent);opacity:0;transition:opacity .25s}
-.shot:hover .cap{opacity:1}
-/* lightbox */
-.lb{position:fixed;inset:0;z-index:200;background:rgba(8,12,18,.92);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:40px}
-.lb.open{display:flex}
-.lb img{max-width:92%;max-height:82%;border-radius:8px;border:1px solid var(--line);box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.lb-cap{position:absolute;bottom:26px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:13px;color:var(--muted)}
-.lb-x{position:absolute;top:22px;right:30px;font-size:30px;color:var(--muted);cursor:pointer;line-height:1;transition:color .2s}
-.lb-x:hover{color:var(--accent)}
-.lb-nav{position:absolute;top:50%;transform:translateY(-50%);font-size:40px;color:var(--muted);cursor:pointer;user-select:none;padding:10px 18px;transition:color .2s}
-.lb-nav:hover{color:var(--accent)}
-.lb-prev{left:10px}.lb-next{right:10px}
+.shots-cap{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;text-align:center;margin-bottom:16px}
+.carousel{position:relative;border:1px solid var(--line);border-radius:10px;background:var(--bg-soft);overflow:hidden}
+.car-stage{position:relative;width:100%;aspect-ratio:16/9;background:#0a0f16}
+.car-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .4s ease;padding:10px}
+.car-stage img.active{opacity:1}
+.car-cap{text-align:center;font-size:13.5px;color:var(--muted);padding:14px 50px 6px;min-height:20px;line-height:1.4}
+.car-dots{display:flex;justify-content:center;gap:8px;padding:8px 0 16px}
+.car-dot{width:7px;height:7px;border-radius:50%;background:var(--line);border:0;padding:0;cursor:pointer;transition:background .2s,transform .2s}
+.car-dot.active{background:var(--accent);transform:scale(1.3)}
+.car-nav{position:absolute;top:0;bottom:0;width:14%;display:flex;align-items:center;justify-content:center;background:none;border:0;color:#fff;font-size:30px;cursor:pointer;opacity:.45;transition:opacity .2s;z-index:2}
+.car-nav:hover{opacity:1}
+.car-prev{left:0;justify-content:flex-start;padding-left:14px}
+.car-next{right:0;justify-content:flex-end;padding-right:14px}
+.car-count{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:11px;color:var(--muted);background:rgba(10,16,24,.7);border:1px solid var(--line);border-radius:20px;padding:3px 10px;z-index:2}
 </style>
 </head>
 <body>
@@ -399,13 +395,21 @@ const D=DATA, $=id=>document.getElementById(id);
           ${i<p.flow.length-1?'<div class="arrow">→</div>':''}`).join('')}</div>
         ${p.flowNote?`<div class="ph-note">${p.flowNote}</div>`:''}
       </div>`:'';
+    const carId='car-'+Math.random().toString(36).slice(2,8);
     const shots=(p.shots&&p.shots.length)?`
-      <div class="shots"><div class="shots-cap">Screenshots — click to enlarge</div>
-        <div class="shots-grid">${p.shots.map((s,i)=>`
-          <div class="shot" onclick="openLB(${i})">
-            <img src="${s[0]}" alt="${s[1]}" loading="lazy">
-            <div class="cap">${s[1]}</div>
-          </div>`).join('')}</div>
+      <div class="shots"><div class="shots-cap">Screenshots</div>
+        <div class="carousel" id="${carId}">
+          <div class="car-count"><span class="car-now">1</span> / ${p.shots.length}</div>
+          <div class="car-stage">
+            ${p.shots.map((s,i)=>`<img src="${s[0]}" alt="${s[1]}" class="${i===0?'active':''}" loading="lazy">`).join('')}
+          </div>
+          <button class="car-nav car-prev" data-car="${carId}" data-dir="-1">&#8249;</button>
+          <button class="car-nav car-next" data-car="${carId}" data-dir="1">&#8250;</button>
+          <div class="car-cap">${p.shots[0][1]}</div>
+          <div class="car-dots">
+            ${p.shots.map((s,i)=>`<button class="car-dot ${i===0?'active':''}" data-car="${carId}" data-idx="${i}"></button>`).join('')}
+          </div>
+        </div>
       </div>`:'';
     const links=(p.links&&p.links.length)?`
       <div class="proj-links">${p.links.map(l=>l.url
@@ -462,35 +466,29 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   }
   draw();
 })();
-/* ---- lightbox for project screenshots ---- */
-const LB_SHOTS=[];
-(DATA.projects||[]).forEach(p=>{if(p.shots)p.shots.forEach(s=>LB_SHOTS.push(s));});
-let lbIndex=0, lbEl;
-function buildLB(){
-  lbEl=document.createElement('div');lbEl.className='lb';
-  lbEl.innerHTML=`<span class="lb-x">&times;</span>
-    <span class="lb-nav lb-prev">&#8249;</span>
-    <img src="" alt=""><div class="lb-cap"></div>
-    <span class="lb-nav lb-next">&#8250;</span>`;
-  document.body.appendChild(lbEl);
-  lbEl.querySelector('.lb-x').onclick=closeLB;
-  lbEl.querySelector('.lb-prev').onclick=e=>{e.stopPropagation();stepLB(-1);};
-  lbEl.querySelector('.lb-next').onclick=e=>{e.stopPropagation();stepLB(1);};
-  lbEl.onclick=e=>{if(e.target===lbEl)closeLB();};
+/* ---- project screenshots carousel ---- */
+const CAR_CAPS={};
+(DATA.projects||[]).forEach(p=>{});
+function carGo(id,target){
+  const car=document.getElementById(id);if(!car)return;
+  const imgs=car.querySelectorAll('.car-stage img');
+  const dots=car.querySelectorAll('.car-dot');
+  const n=imgs.length;
+  let cur=0;imgs.forEach((im,i)=>{if(im.classList.contains('active'))cur=i;});
+  let next=(target+n)%n;
+  imgs[cur].classList.remove('active');dots[cur].classList.remove('active');
+  imgs[next].classList.add('active');dots[next].classList.add('active');
+  car.querySelector('.car-now').textContent=next+1;
+  car.querySelector('.car-cap').textContent=imgs[next].getAttribute('alt');
 }
-function showLB(){
-  if(!LB_SHOTS.length)return;
-  lbEl.querySelector('img').src=LB_SHOTS[lbIndex][0];
-  lbEl.querySelector('.lb-cap').textContent=LB_SHOTS[lbIndex][1];
-}
-function openLB(i){if(!lbEl)buildLB();lbIndex=i;showLB();lbEl.classList.add('open');}
-function closeLB(){if(lbEl)lbEl.classList.remove('open');}
-function stepLB(d){lbIndex=(lbIndex+d+LB_SHOTS.length)%LB_SHOTS.length;showLB();}
-document.addEventListener('keydown',e=>{
-  if(!lbEl||!lbEl.classList.contains('open'))return;
-  if(e.key==='Escape')closeLB();
-  if(e.key==='ArrowLeft')stepLB(-1);
-  if(e.key==='ArrowRight')stepLB(1);
+document.addEventListener('click',e=>{
+  const nav=e.target.closest('.car-nav');
+  if(nav){const car=document.getElementById(nav.dataset.car);
+    const imgs=car.querySelectorAll('.car-stage img');let cur=0;
+    imgs.forEach((im,i)=>{if(im.classList.contains('active'))cur=i;});
+    carGo(nav.dataset.car,cur+parseInt(nav.dataset.dir));return;}
+  const dot=e.target.closest('.car-dot');
+  if(dot){carGo(dot.dataset.car,parseInt(dot.dataset.idx));}
 });
 </script>
 
