@@ -172,6 +172,7 @@ const DATA = {
     ["EXCHANGE", "CUHK · 2025"],
     ["COVERED", "Pharma · Building Materials"],
     ["RESEARCHING", "Semiconductors · AI"],
+    ["MODELING", "M&A · CVR / Derivatives"],
     ["STACK", "Python · FastAPI · React"]
   ],
 
@@ -179,7 +180,7 @@ const DATA = {
   experience: [
     {
       org: "China International Capital Corporation (CICC)",
-      date: "Dec 2025 — Jun 2026",   // <-- set the real end month
+      date: "Dec 2025 — Jun 2026",
       role: "Research Intern · Shanghai",
       past: true,
       points: [
@@ -213,6 +214,40 @@ const DATA = {
   // ---- projects ----
   projects: [
     {
+      flag: "Coursework · M&A / Derivatives",
+      title: "Pfizer–Metsera M&A Valuation Model",
+      desc: [
+        "A full M&A valuation workbook for Pfizer's ~$10bn acquisition of GLP-1/obesity biotech <em>Metsera</em> (closed Nov 2025), built for my Financial Instruments &amp; Risk Management course. The core question: how do you price the <strong>$20.65/share Contingent Value Right (CVR)</strong> that bridges the gap between buyer and seller when a clinical-stage drug program might still fail?",
+        "A CVR is really an embedded option — a string of <em>binary payoffs</em> tied to clinical and FDA milestones. I price it the way the course frames it: a non-recombining <strong>3-step binomial tree</strong> (Hull Ch. 12) where the underlying is Metsera's risk-adjusted drug-program value, with up/down factors from volatility and risk-neutral probabilities at each node, then discounted back to t=0.",
+        "The model chains seven linked sheets: deal assumptions → a Metsera <strong>rNPV</strong> that derives the underlying S₀ from obesity-market sizing and stage-by-stage success rates → the binomial CVR tree → a full consideration waterfall → a sensitivity grid of CVR fair value against milestone probability and discount rate. It reconciles to Pfizer's own stated CVR fair value of <strong>$632mn</strong> (FY2026 Q1 10-Q), which implies a market-priced milestone-2 probability of ~38–42%.",
+        "The framing idea I took from the deal: in a high-uncertainty race, <em>financial-structure design is itself a competitive advantage</em> — Pfizer's higher cash-certainty offer beat a comparable Novo Nordisk bid largely on deal-closure certainty, not headline price."
+      ],
+      tags: ["M&A Valuation","CVR Pricing","Binomial Tree","rNPV","Real Options","Sensitivity Analysis","Excel","Pfizer 10-Q"],
+      flow: [
+        ["Deal Assumptions","cash + CVR<br>milestones, σ, r"],
+        ["Metsera rNPV","market sizing ×<br>P(success) → S₀"],
+        ["CVR Binomial Tree","3-step tree<br>backward induction"],
+        ["Deal Waterfall","consideration +<br>implied metrics"],
+        ["Sensitivity","fair value vs.<br>P(milestone), σ"]
+      ],
+      flowNote: "Reconciles to Pfizer's stated $632mn CVR fair value (FY2026 Q1 10-Q) · total deal fair value ≈ $8.8bn",
+      links: [
+        {label:"Download model (.xlsx)", url:"Pfizer_Metsera_MA_Valuation_Model.xlsx"}
+      ]
+    },
+    {
+      flag: "Coursework · Research note",
+      title: "Financial Instruments in Pharma R&D Risk",
+      desc: [
+        "A companion analysis to the M&A model, arguing that pharma's <strong>multi-stage, long-horizon, high-failure-rate</strong> R&D process (a candidate entering Phase 1 has only ~10% odds of approval; ~$2.6bn average cost per drug) forces a specialized financial toolkit that maps cleanly onto standard derivatives theory.",
+        "The through-line: <em>milestone payments</em> behave like barrier options, <em>staged financing</em> like real options, <em>royalty financing</em> like a floating-to-fixed swap, and a <em>CVR</em> like a call option bundled with a forward. The unifying design principle is risk–information matching — assign each risk to whichever party knows the most about it: biotechs accept CVRs (betting on their own pipeline), acquirers anchor with cash (their baseline conviction), royalty investors take the commercialization risk.",
+        "It also takes the critical view: CVRs aren't a free lunch. Milestone definitions can be ambiguous, acquirers face moral hazard in how hard they push a triggering program, the instruments are typically illiquid, and at industry scale — as in the current GLP-1 deal wave — widespread use of similar structures raises a crowded-trade, systemic-risk question."
+      ],
+      tags: ["Derivatives","Real Options","Risk Transfer","Royalty Financing","GLP-1 / Obesity","Critical Analysis"],
+      flow: null,
+      links: []
+    },
+    {
       flag: "Independent · Full-stack",
       title: "Virtual Stock Portfolio Analysis Platform",
       desc: [
@@ -220,14 +255,14 @@ const DATA = {
         "I designed and built it from scratch: a Python / FastAPI backend serving live A-share market data through AKShare, technical indicators (MA, MACD, RSI) computed in pandas, LLM APIs wired in for automated sector and stock analysis, portfolios persisted in SQLite, and a React + ECharts front end for interactive dashboards."
       ],
       tags: ["Python","FastAPI","pandas","AKShare","MA / MACD / RSI","LLM API","SQLite","React","ECharts"],
-      flow: [   // set to null to hide the diagram
+      flow: [
         ["Sector Screening","market data + news<br>→ hot sectors"],
         ["Stock Analysis","fundamentals +<br>MA / MACD / RSI"],
         ["Portfolio Build","capital + risk<br>→ allocation"],
         ["Monitoring","hold / reduce<br>signals"]
       ],
       flowNote: "",
-      shots: [   // screenshots carousel — file names must match the repo's screenshots folder
+      shots: [
         ["screenshots/01-home.png",           "Entry — guided by goal"],
         ["screenshots/02-picker-prefs.png",   "Smart Stock Picker — risk & capital preferences"],
         ["screenshots/03-picker-sectors.png", "Live hot-sector screening"],
@@ -243,12 +278,13 @@ const DATA = {
     },
     {
       flag: "Competition · Core member",
-      title: "National Statistical Modeling Competition (11th)",
+      title: "How AI Shocks Drive A-Share Sector Rotation",
       desc: [
-        "Led the design of the project's analytical framework — integrating macro industry trends, micro-level business analysis, and competitiveness evaluation — and defined the research pathways and task allocation for the team.",
-        "Sole author of the final 10,000-word research paper, converting the team's research into a rigorous, data-driven deliverable. Awarded Second Prize at the municipal level."
+        "A machine-learning study of how exogenous AI events (2018–2025) propagate into A-share sector rotation — entered in the 11th National Statistical Modeling Competition. I led the analytical framework and was sole author of the 10,000-word paper; the project reached the national semifinals from 400+ teams.",
+        "The method is a two-stage pipeline: <strong>quantify the shock</strong>, then <strong>trace its market effect</strong>. An <em>LDA</em> topic model plus <em>hierarchical (Ward) clustering</em> reduces 38 AI events and ~1.36m characters of corpus into six interpretable themes (validated by an SVM classifier, AUC 0.83); then a <em>time-series association-rule</em> model (Apriori, with Cramér's V as effect size) links each theme to up/down moves across 81 industry sectors over short (5-day) and long (6-month) windows.",
+        "The core finding I'd defend: AI shocks rotate sectors through a <em>two-regime</em> mechanism. Short term, moves are <strong>sentiment- and expectation-driven</strong> — investors chase visible catalysts (logistics on efficiency hopes) and flee competition risk (electronics on open-source commoditization). Long term, rotation becomes <strong>fundamentals-driven</strong>, where a sector's technology sensitivity and capital structure decide who actually benefits — asset-light finance and specialized equipment adapt; capital-heavy, slow-transition sectors (steel, fuel processing) lag despite the tailwind."
       ],
-      tags: ["Statistical Modeling","Research Design","Data Analysis"],
+      tags: ["LDA Topic Model","Hierarchical Clustering","SVM","Association Rules","Cramér's V","Python","A-Share Sectors"],
       flow: null,
       links: []
     }
